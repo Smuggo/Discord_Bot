@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const hook = new Discord.WebhookClient('webhook id', 'webhook token');
-
-const {token} = require("./confg.json");
+const config = require("./config.json")
 
 client.on('ready', () => {
     console.log('Logged in as ${client.user.tag}!')
@@ -21,8 +19,9 @@ client.on('message', msg => {
 
     // Sends a picture of Todd Howard in chat
     if (msg.content === "~todd"){
-        const attachment = new Discord.Attachment("https://ih0.redbubble.net/image.431272546.1489/flat,550x550,075,f.u1.jpg")
-        msg.channel.send(attachment);
+        msg.channel.send({files:[
+            "./images/todd.jpg"
+        ]});
     }
 
     // Embed a message
@@ -35,4 +34,4 @@ client.on('message', msg => {
     }
 });
 
-client.login(token);
+client.login(config.token);
