@@ -19,9 +19,7 @@ client.on('message', msg => {
 
     // Sends a picture of Todd Howard in chat
     if (msg.content === "~todd"){
-        msg.channel.send({files:[
-            "./images/todd.jpg"
-        ]});
+        msg.channel.send({files:["./images/todd.jpg"]});
     }
 
     // Embed a message
@@ -31,6 +29,18 @@ client.on('message', msg => {
           .setColor(0xFF0000)
           .setDescription("Hello, this is a slick embed!");
         msg.channel.send(embed);
+    }
+
+    //Clean chat
+    if (msg.content.includes("~clear")){
+        var numMessages = msg.content.split(" ")[1];
+        try{
+            msg.channel.bulkDelete(numMessages);
+            msg.channel.send("Cleaned " + numMessages + " messages.");
+        }
+        catch(err){
+            msg.channel.send("Invalid command.");
+        }
     }
 });
 
