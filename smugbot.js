@@ -19,7 +19,7 @@ client.on('message', msg => {
             msg.reply('Pong!');
         }
         // Sends the user an URL for their avatar
-        if (command[0] === "what is my avatar"){
+        if (command[0] === "avatar"){
             msg.reply(msg.author.avatarURL);
         }
 
