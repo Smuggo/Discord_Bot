@@ -36,16 +36,24 @@ client.on('message', msg => {
             .setDescription("Hello, this is a slick embed!");
             msg.channel.send(embed);
         }
-
-        //Clean chat by number of messages
-        if (command[0] === "clear"){
-            var numMessages = command[1];
-            try{
-                msg.channel.bulkDelete(numMessages);
-                msg.channel.send("Cleaned " + numMessages + " messages.");
+        
+        //Admin commands
+        if(msg.member.hasPermission("ADMINISTRATOR")){
+            //Clean chat by number of messages
+            if (command[0] === "clear"){
+                var numMessages = command[1];
+                try{
+                    msg.channel.bulkDelete(numMessages);
+                    msg.channel.send("Cleaned " + numMessages + " messages.");
+                }
+                catch(err){
+                    msg.channel.send("Invalid command.");
+                }
             }
-            catch(err){
-                msg.channel.send("Invalid command.");
+
+            //Create channel
+            if (command[0] === "createchannel" || command[0] === "cc"){
+                msg.guild.createChannel(command[1], command[2]);
             }
         }
     }
