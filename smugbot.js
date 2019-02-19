@@ -23,11 +23,6 @@ client.on('message', msg => {
             msg.reply(msg.author.avatarURL);
         }
 
-        // Sends a picture of Todd Howard in chat
-        if (command[0] === "todd"){
-            msg.channel.send({files:["./images/todd.jpg"]});
-        }
-
         // Embed a message
         if (command[0] === "embed"){
             const embed = new Discord.RichEmbed()
